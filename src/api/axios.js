@@ -19,7 +19,7 @@ AxiosInstance.interceptors.request.use(
 
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
-      // config.data = Object.assign({}, config.data, {name: 'fahem'});
+  
     }
     return config;
   },
@@ -47,10 +47,10 @@ AxiosInstance.interceptors.response.use(
       error?.response?.status == 401 &&
       error?.response?.data?.code == 'user_not_found'
     ) {
-      isNavigation('Register');
-      return Promise.reject('refresh_not_valid'); // for disabling login from multiple devices
+
+      return Promise.reject('refresh_not_valid'); 
     } else if (error?.response?.status == 403) {
-      return Promise.reject('refresh_not_valid'); // for disabling login from multiple devices
+      return Promise.reject('refresh_not_valid'); 
     } else {
       return Promise.reject(error);
     }
